@@ -23,7 +23,11 @@ const router = createBrowserRouter(createRoutesFromElements(
             //protected routes nest page/rout in authpage
      
             <Route path="gallary" element={<Gallary />}  errorElement={<ErrorPage/>}
-          loader={gallloader}
+          loader={async () => {
+            await requireAuth()
+            return null
+          }}
+        />
            
             />
      

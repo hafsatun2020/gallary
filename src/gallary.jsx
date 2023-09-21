@@ -21,8 +21,8 @@ import './App.css'
 import { requireAuth } from './requiredauth'
 
 export async function loader() {
-       await requireAuth()
-       return null
+      return await requireAuth()
+       
 
 }
 export default function Gallary() {
