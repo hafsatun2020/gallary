@@ -3,7 +3,7 @@ import { useLoaderData, Form, useNavigate } from "react-router-dom"
 import LoginButton from'./loginbtn'
 import { initializeApp} from "firebase/app";
 import {  getDatabase, set, ref, update} from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import loginUser from './authpage'
 const firebaseConfig = {
     apiKey: "AIzaSyCB45Z3J8n76d8DV3ppKCD8_UlPqhW3hGw",
@@ -80,6 +80,7 @@ createUserWithEmailAndPassword(auth, email, password)
     })
     alert ('user logged in successfully!')
     navigate("/gallary", { replace: true })
+    
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -89,29 +90,9 @@ createUserWithEmailAndPassword(auth, email, password)
 
 }
 
-function handlelogin(e) {
-    e.preventDefault()
 
-    let email = loginFormData.email
-    let password = loginFormData.password
-    signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const dt = new Date()
-    const user = userCredential.user;
-    update(ref(database, 'users/'+  user.uid),{
-        last_login: dt
-    })
-    alert ('user logged in successfully!')
-    navigate("/gallary", { replace: true })
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert (errorMessage)
-  });
 
-}
+
 
    function handleChange(e) {
         const { name, value } = e.target
@@ -140,7 +121,8 @@ console.log(message)
                     value={loginFormData.password}
                     
                 />
-                <button onClick={handleSubmit}>Sign Up</button>
+                
+               <button onClick={handleSubmit}>Sign Up</button>
                 <button onClick={handlelogin}>Sign In</button>
             </Form>
         </div>

@@ -7,6 +7,7 @@ import "./App.css";
 
 
 export default function Home() {
+  
     const photo = photos.map(photo => {console.log(photo.src); return <div><img src={photo.src} alt="" width={photo.width} height={photo.height}/></div> })
     console.log(photo)
   return (
