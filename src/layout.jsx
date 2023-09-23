@@ -28,17 +28,19 @@ export default function Layout() {
     e.preventDefault()
     signOut(auth)
     alert ('user logged out successfully!')
-    redirect("/login", { replace: true })
   }
   return (
     <>
-    <h1>My Gallary</h1>
+   
     <nav>
-    
-      <Link to="/">Home</Link>
+    <h1>My Gallary</h1>
+    <div className="links">
+    <Link to="/">Home</Link>
       <Link to="gallary">Gallary</Link> 
       <button onClick={handlelogout}>logout</button>
       <Link to="login">login</Link> 
+    </div>
+     
     </nav>
     <main>
       <Outlet />

@@ -95,13 +95,13 @@ img{
 }
 
 nav{
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly ;
   align-items: center;
 }
 
-nav > a {
+.links > a {
 font-size: 1.4rem;
 padding: 10px;
 margin: 10px;
@@ -111,7 +111,9 @@ color: black;
 
 footer{
   margin: 10px;
-
+position: relative;
+bottom:0% ;
+top: 100%;
 }
 
 @media (min-width: 608px) {
@@ -123,6 +125,8 @@ footer{
     justify-content: space-evenly ;
     align-items: center;
   }
+
+ 
 }
 
 @media (min-width: 1000px) {
@@ -134,5 +138,14 @@ footer{
     justify-content: center ;
     align-items: center;
     gap: 50px;
+  }
+}
+
+@media (max-width:600px) {
+  nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
   }
 }

@@ -2,8 +2,6 @@ import React from "react"
 import { initializeApp} from "firebase/app";
 import {  getDatabase, set, ref, update} from "firebase/database";
 import { getAuth,onAuthStateChanged } from "firebase/auth";
-import loginUser from './authpage'
-
 import photos from "./photos";
 import { Outlet, Link , redirect} from "react-router-dom"
 import {
@@ -23,7 +21,6 @@ import {
 
 import {SortableItem1 } from './sort';
 import './App.css'
-import { requireAuth } from './requiredauth'
 const firebaseConfig = {
   apiKey: "AIzaSyCB45Z3J8n76d8DV3ppKCD8_UlPqhW3hGw",
   authDomain: "images-gallary-34146.firebaseapp.com",
@@ -40,6 +37,11 @@ const database = getDatabase(app);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
+export async function loader() {
+  await requireAuth()
+  return null
+
+}
 export default function Gallary() {
   const [userinfo, setUSer] = React.useState('')
   const [isloggin, setisloggin] = React.useState(false)
@@ -53,24 +55,24 @@ export default function Gallary() {
   );
 
     
-    let userfound
+   
   React.useEffect( function (){
     onAuthStateChanged(auth, (user) => {
     console.log(user)
     
     if (user.uid){
-      userfound = user.uid
+     
       setisloggin(true)
        setUSer(user.uid)
     }
-    console.log( userinfo, isloggin, userfound)
+    console.log( userinfo, isloggin)
   });})
-console.log( userinfo, isloggin, userfound)
+console.log( userinfo, isloggin)
 
   return (
     <>
      <h1>DragNdrop images HERE</h1>
-     {isloggin && (
+    
       <div className='container' >
         <DndContext 
         sensors={sensors}
@@ -86,8 +88,7 @@ console.log( userinfo, isloggin, userfound)
   
         
       </DndContext>
-      </div>) }
- 
+      </div>
     </>
    
     

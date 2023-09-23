@@ -1,10 +1,8 @@
 import React from "react"
 import { useLoaderData, Form, useNavigate } from "react-router-dom"
-import LoginButton from'./loginbtn'
 import { initializeApp} from "firebase/app";
 import {  getDatabase, set, ref, update} from "firebase/database";
-import { getAuth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import loginUser from './authpage'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 const firebaseConfig = {
     apiKey: "AIzaSyCB45Z3J8n76d8DV3ppKCD8_UlPqhW3hGw",
     authDomain: "images-gallary-34146.firebaseapp.com",
@@ -122,7 +120,7 @@ console.log(message)
                     
                 />
                 
-               <button onClick={handleSubmit}>Sign Up</button>
+
                 <button onClick={handlelogin}>Sign In</button>
             </Form>
         </div>
