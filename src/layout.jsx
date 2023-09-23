@@ -33,12 +33,12 @@ export default function Layout() {
     <>
    
     <nav>
-    <h1>My Gallary</h1>
+    <h1>My Gallery</h1>
     <div className="links">
     <Link to="/">Home</Link>
-      <Link to="gallary">Gallary</Link> 
-      <button onClick={handlelogout}>logout</button>
+      <Link to="gallary">Gallery</Link> 
       <Link to="login">login</Link> 
+      <button onClick={handlelogout}>logout</button>
     </div>
      
     </nav>
