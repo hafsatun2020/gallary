@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import Login, { loader as loginLoader, action as loginAction } from './login'
 import Layout from "./layout"
@@ -6,16 +5,15 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route, redirect, useNavigate} from "react-router-dom"
+  Route} from "react-router-dom"
   import { initializeApp} from "firebase/app";
 import Gallary from './gallary'
-import AuthRequired from './authpage'
 import ErrorPage from './error-page'
 import { requireAuth } from './requiredauth'
 import { Auth0Provider } from '@auth0/auth0-react';
 //import Profile from './profile'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {  getDatabase, set, ref, update} from "firebase/database";
+import { getAuth } from "firebase/auth";
+import {  getDatabase} from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyCB45Z3J8n76d8DV3ppKCD8_UlPqhW3hGw",
   authDomain: "images-gallary-34146.firebaseapp.com",
@@ -40,7 +38,11 @@ const router = createBrowserRouter(createRoutesFromElements(
             //protected routes nest page/rout in authpage
      
             <Route path="gallary" element={<Gallary />}  errorElement={<ErrorPage/>}
-        />
+          loader={async () => {
+            await requireAuth()
+            return null}}
+           
+            />
            
             
      
